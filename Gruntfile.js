@@ -1,6 +1,8 @@
 module.exports = function(grunt) {
-    var node_modules = "../node_modules";
-    var universal = "../node_modules/universal";
+    var path = require("path");
+
+    var node_modules = ".."+path.sep+"node_modules";
+    var universal = ".."+path.sep+"node_modules"+path.sep+"universal";
     var repoURL = "git://github.com/GPII/universal.git";
     var startDir = process.cwd();
     var shellOptions = {
@@ -13,7 +15,7 @@ module.exports = function(grunt) {
             gitClone: { 
                 options: shellOptions,
                 command: function() {
-                    return 'git clone ' + repoURL + " " + universal; 
+                    return 'git clone --depth=1 ' + repoURL + " " + universal; 
                 }
             },
             npmInstall: {
